@@ -10,7 +10,7 @@ public class set4 {
                         public void run() {      // Run method executed in thread
                           creatGUI();            // Call static GUI creator
                         }
-                      }       );
+                      });
   }
 
   static void creatGUI() {

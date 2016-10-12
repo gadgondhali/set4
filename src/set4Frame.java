@@ -1,4 +1,9 @@
 // Frame for the set4 application
+import java.awt.BorderLayout;
+import java.awt.Color;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -6,11 +11,15 @@ import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.ButtonGroup;
+import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
+
 import static java.awt.event.InputEvent.*;
 
 public class set4Frame extends JFrame {
-  // Constructor
+  private static final Color WHITE = null;
+private static final Color LIGHT_GRAY = null;
+// Constructor
   public set4Frame(String title) {
     setTitle(title);                              // Set the window title
     setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -73,9 +82,18 @@ public class set4Frame extends JFrame {
 
     menuBar.add(fileMenu);                       // Add the file menu
     menuBar.add(elementMenu);                    // Add the element menu
+    
+ // Add a Tool Bar
+    toolBar.setBorder(BorderFactory.createEtchedBorder(WHITE, LIGHT_GRAY));
+    JButton button = new JButton("Open");			     // Create button from Action
+    button.setBorder(BorderFactory.createRaisedBevelBorder());
+    toolBar.add(button);						 // Add button border
+    toolBar.setFloatable(false);
+    getContentPane().add(toolBar, BorderLayout.NORTH);
   }
 
   private JMenuBar menuBar = new JMenuBar();     // Window menu bar
+  private JToolBar toolBar = new JToolBar();	 // Window toolbar
 
   // File menu items
   private JMenuItem newItem,  openItem,   closeItem,       
