@@ -1,0 +1,10 @@
+Set4 - Symbolic Editor, Question Paper Generator, Knowledge Base.
+
+Contributors  :
+
+1. Manoj Shimpi
+2. Swati Joshi
+3. Pranit 
+4. Pralhad C
+5. Milind Oka
+
