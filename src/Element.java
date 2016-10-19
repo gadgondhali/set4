@@ -42,6 +42,7 @@ public abstract class Element implements Serializable {
     g2D.translate(position.x, position.y);              // Translate to position
     g2D.rotate(angle);                                  // Rotate about position
     g2D.draw(element);                                  // Draw the element
+   // g2D.draw(element.getBounds());
     g2D.setTransform(old);                              // Restore original transform
   }
 
