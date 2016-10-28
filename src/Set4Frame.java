@@ -113,7 +113,9 @@ public class Set4Frame extends JFrame implements ActionListener, Observer {  // 
     elementMenu.add(new JMenuItem(lineAction = new TypeAction("Line", LINE, "Draw lines")));
     elementMenu.add(new JMenuItem(rectangleAction = new TypeAction("Rectangle", RECTANGLE, "Draw rectangles")));
     elementMenu.add(new JMenuItem(circleAction = new TypeAction("Circle", CIRCLE, "Draw circles")));
+    elementMenu.add(new JMenuItem(ellipseAction = new TypeAction("Ellipse", ELLIPSE, "Draw ellipses")));
     elementMenu.add(new JMenuItem(curveAction = new TypeAction("Curve", CURVE, "Draw curves")));  
+   
     elementMenu.add(new JMenuItem(textAction = new TypeAction("Text", TEXT, "Draw text")));
     elementMenu.addSeparator();
 
@@ -139,7 +141,9 @@ public class Set4Frame extends JFrame implements ActionListener, Observer {  // 
     popup.add(new JMenuItem(lineAction));
     popup.add(new JMenuItem(rectangleAction));
     popup.add(new JMenuItem(circleAction));
+    popup.add(new JMenuItem(ellipseAction));
     popup.add(new JMenuItem(curveAction));
+    
     popup.add(new JMenuItem(textAction));
     popup.addSeparator();
     popup.add(new JMenuItem(redAction));
@@ -227,6 +231,7 @@ public class Set4Frame extends JFrame implements ActionListener, Observer {  // 
     addToolBarButton(rectangleAction);
     addToolBarButton(circleAction);
     addToolBarButton(curveAction);
+    addToolBarButton(ellipseAction);
     addToolBarButton(textAction);
     
     // Add element color buttons
@@ -369,6 +374,14 @@ public class Set4Frame extends JFrame implements ActionListener, Observer {  // 
     }
   }
 
+  public void SetStatusText(String str) 
+      { 
+	  statusBar.setModePane(str); 
+	  }
+
+  
+  
+  
   // Method called by SketchModel object when it changes
   public void update(Observable o, Object obj) {
     sketchChanged = true;
@@ -584,6 +597,8 @@ public class Set4Frame extends JFrame implements ActionListener, Observer {  // 
     public void actionPerformed(ActionEvent e) {
       elementType = typeID;  
       statusBar.setTypePane(typeID);
+   //     statusBar.setModePane("Test");
+    //  statusBar.setText("Without Pane");
     }
 
     private int typeID;
@@ -629,7 +644,7 @@ public class Set4Frame extends JFrame implements ActionListener, Observer {  // 
                      saveAction, saveAsAction, printAction;
 
   // Element type actions
-  private TypeAction lineAction, rectangleAction, circleAction, curveAction, textAction;
+  private TypeAction lineAction, rectangleAction, circleAction, ellipseAction, curveAction,  textAction;
  
   // Element color actions
   private ColorAction redAction, yellowAction,
@@ -647,7 +662,7 @@ public class Set4Frame extends JFrame implements ActionListener, Observer {  // 
   private Color elementColor = DEFAULT_ELEMENT_COLOR;  // Current element color
   private int elementType = DEFAULT_ELEMENT_TYPE;      // Current element type
   private Font font = DEFAULT_FONT;                    // Current font
-  private Set4 theApp;                             // The application object
+  private Set4 theApp;                                 // The application object
   private FontDialog fontDlg;                          // The font dialog
   private JPopupMenu popup = new JPopupMenu("General");// Window pop-up
 

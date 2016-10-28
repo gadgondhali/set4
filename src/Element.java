@@ -42,7 +42,6 @@ public abstract class Element implements Serializable {
     g2D.translate(position.x, position.y);              // Translate to position
     g2D.rotate(angle);                                  // Rotate about position
     g2D.draw(element);                                  // Draw the element
-   // g2D.draw(element.getBounds());
     g2D.setTransform(old);                              // Restore original transform
   }
 
@@ -77,7 +76,9 @@ public abstract class Element implements Serializable {
   public static class Line extends Element {
     public Line(Point start, Point end, Color color) {
       super(color);
-      position = start;
+   //   position = start;
+      position = new Point(Math.min(start.x, end.x),
+              Math.min(start.y, end.y));
       line = new Line2D.Double(origin, new Point(end.x - position.x, end.y - position.y));
     }
 
@@ -106,6 +107,8 @@ public abstract class Element implements Serializable {
 
     // Change the end point for the line
     public void modify(Point start, Point last) {
+    	position.x = Math.min(start.x, last.x);
+        position.y = Math.min(start.y, last.y);
       line.x2 = last.x - position.x;
       line.y2 = last.y - position.y;
     }
@@ -204,7 +207,57 @@ public abstract class Element implements Serializable {
 
     private Ellipse2D.Double circle;
   }
+  
 
+  // Nested class defining an ellipse
+  public static class Ellipse extends Element {
+	    public Ellipse(Point start, Point end, Color color) {
+	      super(color);
+	    position = new Point(Math.min(start.x, end.x),
+	                         Math.min(start.y, end.y));
+	    ellipse = new Ellipse2D.Double(origin.x,
+	                                       origin.y,
+	                                       Math.abs(start.x - end.x),     // Width
+	                                       Math.abs(start.y - end.y));    // & height 
+	    }
+
+	    // Method to serialize a rectangle
+	    private void writeObject(ObjectOutputStream out) throws IOException {
+	      out.writeDouble(ellipse.width);
+	      out.writeDouble(ellipse.height);
+	    }
+
+	    // Method to deserialize a rectangle
+	    private void readObject(ObjectInputStream in)
+	                 throws IOException, ClassNotFoundException {
+	      double width = in.readDouble();
+	      double height = in.readDouble();
+	      ellipse = new Ellipse2D.Double(0,0,width,height);
+	    }
+
+	    public void draw(Graphics2D g2D) {
+	      draw(g2D, ellipse);                      // Call base draw method
+	    }
+
+	    // Method to return the rectangle enclosing this rectangle
+	    public java.awt.Rectangle getBounds() { 
+	      return getBounds(ellipse.getBounds());
+	    }
+
+	    // Method to redefine the rectangle
+	    public void modify(Point start, Point last) {
+	      position.x = Math.min(start.x, last.x);
+	      position.y = Math.min(start.y, last.y);
+	      ellipse.width = Math.abs(start.x - last.x);
+	      ellipse.height = Math.abs(start.y - last.y);
+	    }
+
+	    private Ellipse2D.Double ellipse;
+	  }
+  
+  
+  
+  
   // Nested class defining a curve
   public static class Curve extends Element {
     public Curve(Point start, Point next, Color color) {

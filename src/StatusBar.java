@@ -17,10 +17,18 @@ class StatusBar extends JPanel {
     setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
     setColorPane(DEFAULT_ELEMENT_COLOR);
     setTypePane(DEFAULT_ELEMENT_TYPE);
+    setModePane("NORMAL");
     add(colorPane);                              // Add color pane to status bar
     add(typePane);                               // Add type pane to status bar
+    add(modePane);
   }
 
+  public void setModePane(String str)
+  {
+	modePane.setText(str);  
+  }
+  
+  
   // Set color pane label
   public void setColorPane(Color color) {
     String text = null;                          // Text for the color pane
@@ -52,6 +60,9 @@ class StatusBar extends JPanel {
       case CIRCLE:
         text = "CIRCLE";
         break;
+      case ELLIPSE:
+        text = "ELLIPSE";
+        break;
       case CURVE:
         text = "CURVE";
         break;
@@ -67,6 +78,7 @@ class StatusBar extends JPanel {
   // Panes in the status bar
   private StatusPane colorPane = new StatusPane("BLUE");
   private StatusPane typePane = new StatusPane("LINE");
+  private StatusPane2 modePane = new StatusPane2("NORMAL");
 
   // Class defining a status bar pane
   class StatusPane extends JLabel {
@@ -83,4 +95,30 @@ class StatusBar extends JPanel {
     // Font for pane text
     private Font paneFont = new Font("Serif", Font.PLAIN, 10);
   }
+
+  
+  class StatusPane2 extends JLabel {
+	    public StatusPane2(String text) {
+	      setBackground(Color.LIGHT_GRAY);      // Set background color
+	      setForeground(Color.BLACK);
+	      setFont(paneFont);                   // Set the fixed font
+	      setHorizontalAlignment(CENTER);      // Center the pane text 
+	      setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
+	      setPreferredSize(new Dimension(300,20));
+	      setText(text);                       // Set the text in the pane
+	    }
+
+	    // Font for pane text
+	    private Font paneFont = new Font("Serif", Font.PLAIN, 10);
+	  }
+
+  
+  
+  
+  
+public void setText(String string) 
+{
+	setText(string);
+	
+}
 }
