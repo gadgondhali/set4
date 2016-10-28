@@ -1,5 +1,10 @@
 *.class
+<<<<<<< HEAD
 
+=======
+bin/
+c:/
+>>>>>>> a45dff234841fc5e6a838cc1e8785129d689129b
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
