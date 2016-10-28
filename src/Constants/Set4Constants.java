@@ -11,6 +11,7 @@ public class Set4Constants {
   public final static int CIRCLE    = 103;
   public final static int CURVE     = 104;
   public final static int TEXT      = 105;
+  public final static int ELLIPSE   = 106;
   // Initial conditions
   public final static int DEFAULT_ELEMENT_TYPE = LINE;
   public final static Color DEFAULT_ELEMENT_COLOR = Color.BLUE;
@@ -24,6 +25,7 @@ public class Set4Constants {
   public final static int NORMAL = 0;
   public final static int MOVE   = 1;
   public final static int ROTATE = 2;
+  public final static int RESIZE = 3;
 
   // Constants related to storing a sketch
   public final static File DEFAULT_DIRECTORY = new File("C:/Sketches");
