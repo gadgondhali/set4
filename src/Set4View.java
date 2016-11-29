@@ -163,19 +163,31 @@ class Set4View extends JComponent implements Observer, ActionListener, Printable
     }
   }
 
-  // Handle context menu events
+  // Handle context menu event
   public void actionPerformed(ActionEvent e ) {
     Object source = e.getSource();
     
-    selectedElement = highlightElement;
+    //highlightElement=selectedElement;
     if(source == moveItem) {
       mode = MOVE;
       
     } else if(source == deleteItem) {
-      if(highlightElement != null) {                    // If there's an element
-        theApp.getModel().remove(highlightElement);     // then remove it
-        selectedElement = highlightElement=null;                        // Remove the reference
+      if(selectedElement != null) {                    // If there's an element
+        theApp.getModel().remove(selectedElement);     // then remove it
+                                // Remove the reference
+        
+   //     Graphics2D g2D = (Graphics2D) getGraphics();
+        
+   //     DrawSelectionBorder(g2D);
+   //     g2D.setXORMode(getBackground());                // Set XOR mode
+   //     DrawSelectionBorder(g2D);
+        selectedElement = highlightElement=null;
+        SelectionRect=null;
+        repaint();
+        
+        
       }
+      
 
     } else if(source == rotateItem) {
       mode = ROTATE;
@@ -195,7 +207,7 @@ class Set4View extends JComponent implements Observer, ActionListener, Printable
   public void DrawSelectionBorder(Graphics2D g2)
   {  Rectangle out=new Rectangle(SelectionRect);
      
-  out.grow(4,4);
+       out.grow(4,4);
 	  g2.draw(out);
 	  
   }
@@ -280,6 +292,20 @@ class Set4View extends JComponent implements Observer, ActionListener, Printable
       */
       
     } 
+    
+    
+    public void ShowShapeCount()
+    {int nob=0;
+    	for(Element element : theApp.getModel())  
+    	{  // Go through the list
+            nob++;
+    	}
+              
+    	
+    	// int nob = theApp.getModel().countObservers();
+    	 String str = String.format("%d", nob);
+    	 show(str);
+    }
 
     public void mouseDragged(MouseEvent e) 
     {
@@ -294,6 +320,7 @@ class Set4View extends JComponent implements Observer, ActionListener, Printable
         if(button1Down && (theApp.getWindow().getElementType() != TEXT)&& (mode == NORMAL)) {
           if(tempElement == null)
           {                       // Is there an element?
+        	//if(SelectionRect==null) return;
             tempElement = createElement(start, last);     // No, so create one
             selectedElement=tempElement;
           } else {
@@ -362,8 +389,9 @@ class Set4View extends JComponent implements Observer, ActionListener, Printable
         processPopupTrigger(e);
       } else if((e.getButton()==MouseEvent.BUTTON1) && (theApp.getWindow().getElementType() != TEXT) && mode == NORMAL) {
         button1Down = false;                     // Reset the button 1 flag
-        if(tempElement != null) {
+        if(selectedElement != null) {
        theApp.getModel().add(selectedElement);       // Add element to the model
+     //  selectedElement=tempElement;
        
        
        if(SelectionRect!=null)   ///remove old selection
@@ -371,7 +399,7 @@ class Set4View extends JComponent implements Observer, ActionListener, Printable
             DrawSelectionBorder(g2D);
 		  }
        
-       selectedElement=tempElement;
+      
        SelectionRect=selectedElement.getBounds();
    //    SelectionRect.grow(4,4);
        DrawSelectionBorder(g2D);   
@@ -407,7 +435,7 @@ class Set4View extends JComponent implements Observer, ActionListener, Printable
 
     public void mouseClicked(MouseEvent e)
     { 
-     
+     ShowShapeCount();
     	
       if((e.getButton()== MouseEvent.BUTTON1) && (theApp.getWindow().getElementType() == TEXT))
       {
@@ -433,7 +461,7 @@ class Set4View extends JComponent implements Observer, ActionListener, Printable
                                          );
 
           if(tempElement != null) {                  // If we created one
-            theApp.getModel().add(selectedElement);      // add it to the model
+            theApp.getModel().add(tempElement);      // add it to the model
             tempElement = null;                      // and reset the field
           }
           g2D.dispose();                             // Release context resources
@@ -646,8 +674,7 @@ class Set4View extends JComponent implements Observer, ActionListener, Printable
 
     
     void ResizeShape()
-    {
-     
+    { if(SelectionRect==null) return;
             Rectangle r = SelectionRect;
             int type = getCursor().getType();
             int dx = last.x - r.x;

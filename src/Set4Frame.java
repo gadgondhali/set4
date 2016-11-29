@@ -155,69 +155,6 @@ public class Set4Frame extends JFrame implements ActionListener, Observer {  // 
  
     // Add file buttons
     toolBar.addSeparator();                      // Space at the start
-    /*
-    ImageIcon ic01 = new ImageIcon(getClass().getResource("New.gif"));
-
-    ImageIcon ic02 = new ImageIcon(getClass().getResource("Open.gif"));
-    ImageIcon ic03 = new ImageIcon(getClass().getResource("Save.png"));
-	ImageIcon ic04 = new ImageIcon(getClass().getResource("Print.jpg"));
-	ImageIcon ic05 = new ImageIcon(getClass().getResource("Line.jpg"));
-	ImageIcon ic06 = new ImageIcon(getClass().getResource("Rectangle.gif"));
-	ImageIcon ic07 = new ImageIcon(getClass().getResource("Circle.gif"));
-	ImageIcon ic08 = new ImageIcon(getClass().getResource("Curve.png"));
-	ImageIcon ic09 = new ImageIcon(getClass().getResource("Text.jpg"));
-	ImageIcon ic10 = new ImageIcon(getClass().getResource("Blue.jpg"));
-	ImageIcon ic11 = new ImageIcon(getClass().getResource("Red.gif"));
-	ImageIcon ic12 = new ImageIcon(getClass().getResource("Yellow.gif"));
-	ImageIcon ic13 = new ImageIcon(getClass().getResource("Green.png"));
-//	ImageIcon ic04 = new ImageIcon(getClass().getResource("red.jpg"));
-//	ImageIcon ic05 = new ImageIcon(getClass().getResource("green.jpg"));
-//	ImageIcon ic6 = new ImageIcon(getClass().getResource("yellow.jpg"));
-
-	
-	Image img = ic01.getImage();
-	Image newimg = img.getScaledInstance(20, 20,
-			java.awt.Image.SCALE_SMOOTH);
-	ic01 = new ImageIcon(newimg);
-	JButton newButton = new JButton(ic01);
-	toolBar.add(newButton);
-	
-	
-	img = ic02.getImage();
-	newimg = img.getScaledInstance(20, 20,
-			java.awt.Image.SCALE_SMOOTH);
-	ic02 = new ImageIcon(newimg);
-	JButton newButton2 = new JButton(ic02);
-	toolBar.add(newButton2);
-	
-	  JButton buttons[];
-      ImageIcon icon[];
-      String IconFile[]={"New.gif","Open.gif","Save.gif","Print.gif","Line.gif","Rectangle.gif","Circle.gif",
-      		                "Curve.gif","Blue.gif","Red.gif","Yellow.gif","Green.gif"};
-      JToolBar bar = new JToolBar();
-      buttons = new JButton[10];
-      icon=new ImageIcon[10];
-      
-      for(int i = 0; i < 10; i++) 
-      {   
-      	
-      	icon[i]=new ImageIcon(getClass().getResource(IconFile[i]));
-          buttons[i] = new JButton(icon[i]);
-       toolBar.add(buttons[i]);
-      }
-	
-	*/
-	
-	
-	/*
-	img = ic02.getImage();
-	newimg = img.getScaledInstance(20, 20,
-			java.awt.Image.SCALE_SMOOTH);
-	ic02 = new ImageIcon(newimg);
-	JButton newButton1 = new JButton(ic02);
-	toolBar.add(newButton1);
-*/
-    
     
     
     addToolBarButton(newAction);
